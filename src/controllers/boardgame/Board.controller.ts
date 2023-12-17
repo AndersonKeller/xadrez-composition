@@ -1,3 +1,4 @@
+import { iPiece } from "./Piece.controller";
 import { iPosition } from "./Position.controller";
 
 export const Board = (rows: number, columns: number) => {
@@ -12,6 +13,7 @@ export const Board = (rows: number, columns: number) => {
 
     return board;
   };
+
   const getColumns = () => {
     return columns;
   };
@@ -26,11 +28,26 @@ export const Board = (rows: number, columns: number) => {
     return positionExists(position.getRow(), position.getColumn());
   };
 
-  return { create, getColumns, getRows, positionIsExists };
+  const placePiece = (piece: iPiece, position: iPosition) => {
+    if (thereIsAPiece(position)) {
+      return "There is already a piece on position " + position;
+    }
+
+    piece.position = position;
+  };
+
+  const thereIsAPiece = (position: iPosition) => {
+    if (!positionIsExists(position)) {
+      return false;
+    }
+    return;
+  };
+
+  return { create, getColumns, getRows, positionIsExists, placePiece };
 };
 export type iBoard = {
   rows: number;
   columns: number;
-  getRows: () => number;
-  getColumns: () => number;
+  getRows?: () => number;
+  getColumns?: () => number;
 };

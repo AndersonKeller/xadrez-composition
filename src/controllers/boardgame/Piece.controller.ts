@@ -1,10 +1,6 @@
-import { iBoard } from "./Board.controller";
 import { iPosition } from "./Position.controller";
 
-export const Piece = (board: iBoard, position: iPosition | null) => {
-  const getBoard = () => {
-    return board;
-  };
+export const Piece = ({ position }: iPiece) => {
   const possibleMoves = (row: number, column: number) => {
     // return board.columns;
   };
@@ -18,4 +14,7 @@ export const Piece = (board: iBoard, position: iPosition | null) => {
     possibleMoves,
     possibleMove,
   };
+};
+export type iPiece = {
+  position: iPosition;
 };
